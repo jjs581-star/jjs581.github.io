@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="James Sanchez — Rutgers Business School accounting student portfolio.">
+  <title>James Sanchez | Accounting Student Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #0b1120;
+      --surface: #111a2e;
+      --surface-2: #17233d;
+      --text: #f8fafc;
+      --muted: #a8b3c7;
+      --accent: #5eead4;
+      --accent-2: #60a5fa;
+      --border: rgba(255,255,255,0.10);
+      --max-width: 1100px;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(96,165,250,0.15), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(94,234,212,0.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(11, 17, 32, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    header {
+      min-height: 88vh;
+      display: grid;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    .hero {
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 19px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--surface-2);
+    }
+
+    .button.primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+      font-weight: 700;
+    }
+
+    section {
+      padding: 90px 0;
+      scroll-margin-top: 70px;
+    }
+
+    .section-heading {
+      margin-bottom: 42px;
+    }
+
+    .section-heading p {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.045em;
+      line-height: 1.1;
+    }
+
+    .about-grid,
+    .experience-grid,
+    .project-grid,
+    .skills-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .about-grid {
+      grid-template-columns: 1.4fr 0.8fr;
+    }
+
+    .experience-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(23,35,61,0.9), rgba(17,26,46,0.9));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.16);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .about-copy p + p {
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat:last-child {
+      border-bottom: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.45rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+    }
+
+    .role {
+      position: relative;
+    }
+
+    .role::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      position: absolute;
+      left: -5px;
+      top: 35px;
+      box-shadow: 0 0 0 6px rgba(94,234,212,0.08);
+    }
+
+    .timeline {
+      border-left: 1px solid var(--border);
+      padding-left: 28px;
+      margin-left: 5px;
+    }
+
+    .role + .role {
+      margin-top: 24px;
+    }
+
+    .role-meta {
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .role h3 {
+      margin-bottom: 4px;
+    }
+
+    .role .organization {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .project-card {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-number {
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+    }
+
+    .project-date {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 14px;
+    }
+
+    .skill {
+      text-align: center;
+      padding: 26px 18px;
+    }
+
+    .skill strong {
+      display: block;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      padding: 45px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .contact-link {
+      display: block;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .contact-link small {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      header {
+        min-height: 75vh;
+      }
+
+      .about-grid,
+      .experience-grid,
+      .project-grid,
+      .skills-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 16vw, 5rem);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#top">James<span>.</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <header>
+      <div class="container">
+        <div class="hero">
+          <p class="eyebrow">Accounting Student • Rutgers Business School</p>
+
+          <h1>
+            James<br>
+            <span>Sanchez.</span>
+          </h1>
+
+          <p class="hero-description">
+            Accounting student at Rutgers Business School with an interest in
+            developing strong skills in accounting, records, financial information,
+            community service, and organized resource management.
+          </p>
+
+          <div class="buttons">
+            <a class="button primary" href="#projects">View My Projects</a>
+            <a class="button" href="#contact">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <p>About Me</p>
+          <h2>Building experience through numbers, organization, and service.</h2>
+        </div>
+
+        <div class="about-grid">
+          <article class="card about-copy">
+            <p>
+              I'm a student at Rutgers Business School pursuing a Bachelor of
+              Business Administration in Accounting, with an expected graduation
+              in May 2029.
+            </p>
+
+            <p>
+              I have developed a strong interest in accounting and in using
+              organized records and numbers to help people and organizations.
+              My goal is to continue developing my accounting skills and
+              eventually use them to help families, businesses, and others who
+              need assistance with records, taxes, and financial statements.
+            </p>
+
+            <p>
+              Outside the classroom, I contribute through church service,
+              classroom teaching, multimedia coordination, event support, and
+              creative projects.
+            </p>
+          </article>
+
+          <aside class="card">
+            <div class="stat">
+              <strong>2029</strong>
+              <span>Expected BBA Accounting Graduation</span>
+            </div>
+
+            <div class="stat">
+              <strong>Rutgers</strong>
+              <span>Business School — New Brunswick</span>
+            </div>
+
+            <div class="stat">
+              <strong>Somerset, NJ</strong>
+              <span>Based in New Jersey</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <p>Experience</p>
+          <h2>Service, leadership, and responsibility.</h2>
+        </div>
+
+        <div class="experience-grid">
+
+          <article class="card">
+            <div class="timeline">
+
+              <div class="role">
+                <div class="role-meta">Ongoing</div>
+                <h3>Multimedia Team Lead</h3>
+                <div class="organization">Local Church</div>
+                <p>
+                  Track the cost of every subscription, wiring job, and lighting
+                  or projection expense so the team's equipment stays funded and
+                  accounted for.
+                </p>
+              </div>
+
+              <div class="role">
+                <div class="role-meta">Ongoing</div>
+                <h3>Class Teacher</h3>
+                <div class="organization">Local Church</div>
+                <p>
+                  Keep a running record of books, markers, pencils, notebooks,
+                  and other classroom supplies used to keep students engaged
+                  while remaining mindful of the church's budget.
+                </p>
+              </div>
+
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="role">
+              <div class="role-meta">September 2025 — Present</div>
+              <h3>Volunteer Staff</h3>
+              <div class="organization">Rutgers University–New Brunswick</div>
+              <p>
+                Connect with people within the group to help create events for
+                students on and off campus. Support event experiences, take care
+                of customers, and socialize with attendees so people feel
+                welcomed and included.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <p>Projects</p>
+          <h2>On-set creative experience.</h2>
+        </div>
+
+        <div class="project-grid">
+
+          <article class="card project-card">
+            <div>
+              <div class="project-number">PROJECT 01</div>
+              <h3>Urban Outfitters Commercial</h3>
+              <p class="project-date">June 24</p>
+            </div>
+
+            <p>
+              Worked as a background character on a commercial for Urban
+              Outfitters, spending time with the cast and crew on set to help
+              create an immersive commercial experience for customers.
+            </p>
+          </article>
+
+          <article class="card project-card">
+            <div>
+              <div class="project-number">PROJECT 02</div>
+              <h3>Rhoback Commercial</h3>
+              <p class="project-date">July 8</p>
+            </div>
+
+            <p>
+              Participated as a marching band character in scenes featuring
+              Jamies Winston, contributing to a commercial focused on showcasing
+              college football gear and creating excitement around the college
+              football industry.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <p>Skills</p>
+          <h2>Skills I bring to teams and projects.</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="card skill">
+            <strong>Communication</strong>
+          </div>
+
+          <div class="card skill">
+            <strong>Community Service</strong>
+          </div>
+
+          <div class="card skill">
+            <strong>Volunteer Engagement</strong>
+          </div>
+
+          <div class="card skill">
+            <strong>Organization</strong>
+          </div>
+
+          <div class="card skill">
+            <strong>Record Keeping</strong>
+          </div>
+
+          <div class="card skill">
+            <strong>Resource Management</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <p>Contact</p>
+          <h2>Let's connect.</h2>
+        </div>
+
+        <div class="contact-grid">
+          <a class="contact-link" href="mailto:jjs581@scarletmail.rutgers.edu">
+            <small>Email</small>
+            jjs581@scarletmail.rutgers.edu
+          </a>
+
+          <a
+            class="contact-link"
+            href="https://www.linkedin.com/in/james-sanchez-680a6a3aa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <small>LinkedIn</small>
+            linkedin.com/in/james-sanchez-680a6a3aa
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 James Sanchez. Built for GitHub Pages.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
